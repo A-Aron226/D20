@@ -18,8 +18,8 @@ public class Stats : MonoBehaviour
     {
         pHealth = 100;
         eHealth = 100;
-        enemy = Random.Range(10, 21);
-        if (finesse)
+        enemy = Random.Range(10, 21); //randomizes enemy armor rating
+        if (finesse) //calculates hit modifer if finesse is true or not
         {
             if (str > dex)
             {
@@ -48,21 +48,21 @@ public class Stats : MonoBehaviour
 
         Debug.Log("Enemy's armor class is " + enemy + " and has " + eHealth + " in total");
 
-        Debug.Log("Press 'R' to roll the D20 die to attack the enemy.");
+        Debug.Log("Press 'R' to roll the D20 die to attack the enemy."); //prompts user to hit the 'r' key
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("r"))
+        if (Input.GetKeyDown("r")) //updates events every time 'r' is pressed
             {
-            int dice = Random.Range(1, 21);
+            int dice = Random.Range(1, 21); //simulates a d20 dice
             Debug.Log(nameChar + " rolled a " + dice);
 
             if (dice + hit > enemy)
             {
-                eHealth -= (dice + hit);
+                eHealth -= (dice + hit); //calculates remaining enemy health
                 Debug.Log("The enemy has been hit! The enemy now has " + eHealth + ". Roll again for another strike!");
 
 
@@ -70,7 +70,7 @@ public class Stats : MonoBehaviour
 
             else
             {
-                pHealth -= Random.Range(5, 11);
+                pHealth -= Random.Range(5, 11); //calculates remaining player health
                 Debug.Log(nameChar + "'s strike missed the enemy." + nameChar + " now has " + pHealth + " left! Roll again to strike!");
 
 
@@ -89,7 +89,7 @@ public class Stats : MonoBehaviour
 
         if(eHealth <= 0)
         {
-            Input.ResetInputAxes();
+            Input.ResetInputAxes(); //disables input key to prevent the player to attack. Activates after either player or enemy reaches zero health
         }
 
         if(pHealth <= 0)
