@@ -46,7 +46,7 @@ public class Stats : MonoBehaviour
         }
         Debug.Log(nameChar + "'s has " + pHealth + " in total");
 
-        Debug.Log("Enemy's armor class is " + enemy + " and has " + eHealth + " in total");
+        Debug.Log("Enemy's armor class is " + enemy + " and has " + eHealth + " health in total");
 
         Debug.Log("Press 'R' to roll the D20 die to attack the enemy."); //prompts user to hit the 'r' key
 
@@ -79,22 +79,14 @@ public class Stats : MonoBehaviour
             if (eHealth <= 0)
             {
                 Debug.Log(nameChar + " has defeated the enemy and emerges victorious!");
+                UnityEditor.EditorApplication.isPlaying = false; //exits editor play mode once player or enemy health reaches zero or below
             }
 
             if (pHealth <= 0)
             {
                 Debug.Log(nameChar + " fell in battle and lost!");
+                UnityEditor.EditorApplication.isPlaying = false;
             }
-        }
-
-        if(eHealth <= 0)
-        {
-            Input.ResetInputAxes(); //disables input key to prevent the player to attack. Activates after either player or enemy reaches zero health
-        }
-
-        if(pHealth <= 0)
-        {
-            Input.ResetInputAxes();
         }
     }
 }
